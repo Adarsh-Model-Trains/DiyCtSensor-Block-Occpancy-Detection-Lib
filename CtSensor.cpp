@@ -11,40 +11,51 @@
 void CtSensor::init() {
   _sensorAverageReading = 0;
   _sensorSamplesCount = 10;
-  _occupancyThreshold = 550;
-  _unOccupancyThreshold = 100;
+  _occupancyThreshold = 600;
+  _unOccupancySamples = 20;
 }
 
-void CtSensor::setBlockSensorPin(int blockSensorPin) {
+void CtSensor::setOccupancyThreshhold(int occupancyThreshold) {
+  _occupancyThreshold = occupancyThreshold;
+}
+void CtSensor::setOccupancySamples(int unOccupancySamples) {
+  _unOccupancySamples = unOccupancySamples;
+}
+
+void CtSensor::setBlockSensorPin(uint8_t blockSensorPin) {
   _blockSensorPin = blockSensorPin;
 }
 
-void CtSensor::occupiedBlock() {
+void CtSensor::unOccupiedBlock() {
   _unOccupancyCount = 0;
   if (_sensorAverageReading < _occupancyThreshold) {
     _stateCurrent = OCCUPIED;
+    _sensorAverageReading = 0;
   }
 }
 
-void CtSensor::unOccupiedBlock() {
-  if (_sensorAverageReading > _occupancyThreshold && _unOccupancyCount < _unOccupancyThreshold) {
+void CtSensor::occupiedBlock() {
+  if (_sensorAverageReading > _unOccupancySamples && _unOccupancyCount < _unOccupancySamples) {
     _unOccupancyCount ++;
   }
-  if (_sensorAverageReading < _occupancyThreshold && _unOccupancyCount < _unOccupancyThreshold) {
+  if (_sensorAverageReading < _unOccupancySamples && _unOccupancyCount < _unOccupancySamples) {
     _unOccupancyCount = 0;
   }
-  if (_sensorAverageReading > _occupancyThreshold && _unOccupancyCount > _unOccupancyThreshold - 1) {
+  if (_sensorAverageReading > _unOccupancySamples && _unOccupancyCount > _unOccupancySamples - 1) {
     _stateCurrent = UNOCCUPIED;
+    _sensorAverageReading = 0;
   }
 }
 
 void CtSensor::calculateBlockOccupancy() {
+  _sensorReadingTemp = 0;
   _sensorTotalReadingTemp = 0;
   for (_index = 0; _index < _sensorSamplesCount; _index++ ) {
-    _sensorTotalReadingTemp += analogRead(_blockSensorPin);
+    _sensorReadingTemp = analogRead(_blockSensorPin);
+    _sensorTotalReadingTemp += _sensorReadingTemp;
     _sensorAverageReading = _sensorTotalReadingTemp / _index;
+    Serial.println(_sensorAverageReading);
   }
-  delay(10);
   switch (_stateCurrent) {
     case OCCUPIED:
       occupiedBlock();

@@ -22,14 +22,17 @@ void DiySensor::initBlockSensors(int totalSensor) {
   }
 }
 
-void DiySensor::setBlockSensorPins(int blockNo, int ctSensorPin) {
+void DiySensor::setDiyOccupancyThreshhold(int blockNo, int occupancyThreshold) {
+  this->_ctSensorBlocks[blockNo].setOccupancyThreshhold(occupancyThreshold);
+}
+
+void DiySensor::setDiyOccupancySamples(int blockNo, int unOccupancySamples) {
+  this->_ctSensorBlocks[blockNo].setOccupancySamples(unOccupancySamples);
+}
+
+void DiySensor::setBlockSensorPins(int blockNo, uint8_t ctSensorPin) {
   if (blockNo > -1 && blockNo <= _totalSensor ) {
-    if (ctSensorPin > -1 ) {
-      pinMode(ctSensorPin, INPUT);
-      _ctSensorBlocks[blockNo - 1].setBlockSensorPin(ctSensorPin);
-    } else {
-      Serial.println("Invalid Block Sensor Pin No.");
-    }
+    _ctSensorBlocks[blockNo - 1].setBlockSensorPin(ctSensorPin);
   } else {
     Serial.println("Invalid Block Sensor Input No.");
   }

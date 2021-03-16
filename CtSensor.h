@@ -16,17 +16,18 @@ enum BLOCK_STATE {
 class CtSensor {
 
   private:
-    int _blockSensorPin;
-    int _sensorAverageReading;//value
+    uint8_t _blockSensorPin;
+    long _sensorAverageReading;//value
     int _sensorSamplesCount; //numSamples
     int _occupancyThreshold;  //threshold
-    int _unOccupancyThreshold; // clearsample
+    int _unOccupancySamples; // clearsample
     int _unOccupancyCount; // clearcount
+    int _sensorReadingTemp;
     int _sensorTotalReadingTemp;
     int _index;
-
     BLOCK_STATE _stateCurrent = UNOCCUPIED;
     void init();
+
     void calculateBlockOccupancy();
     void occupiedBlock();
     void unOccupiedBlock();
@@ -36,7 +37,9 @@ class CtSensor {
       init();
     }
 
-    void setBlockSensorPin(int blockSensorPin);
+    void setBlockSensorPin(uint8_t blockSensorPin);
+    void setOccupancyThreshhold(int occupancyThreshold);
+    void setOccupancySamples(int unOccupancySamples);
     bool isBlockOccupied();
 
     ~CtSensor() {
