@@ -69,6 +69,16 @@ void setup() {
 }
 ```
 
+### Configure the Block sensor Name 
+* diySensor.setBlockSensorName(CT_SENSOR_SEQUENCE_NUMBER, "BLOCK_SENSOR_NAME");
+```
+void setup() {
+  .................
+  diySensor.setBlockSensorName(1, "BLOCK_SENSOR_NAME");
+  .................
+}
+```
+
 
 ### Configure the Sensors with Occupancy Threshhold 
 * diySensor.setDiyOccupancyThreshhold(CT_SENSOR_SEQUENCE_NUMBER, CT_SENSOR_OCCUPANCY_THRESHHOLD);
@@ -81,11 +91,11 @@ void setup() {
 ```
 
 ### Configure the Sensors with Occupancy Samples 
-* diySensor.setDiyOccupancySamples(CT_SENSOR_SEQUENCE_NUMBER, CT_SENSOR_OCCUPANCY_SAMPLE);
+* diySensor.setDiyUnOccupancySamples(CT_SENSOR_SEQUENCE_NUMBER, CT_SENSOR_OCCUPANCY_SAMPLE);
 ```
 void setup() {
   .................
-  diySensor.setDiyOccupancySamples(1, 100);
+  diySensor.setDiyUnOccupancySamples(1, 100);
   .................
 }
 ```
@@ -148,12 +158,17 @@ void setup() {
   Serial.begin(9600);
   diySensor.initBlockSensors(CT_SENSOR_COUNT);
   diySensor.setBlockSensorPins(1, A0);
-  diySensor.setDiyOccupancyThreshhold(1, 600);
-  diySensor.setDiyOccupancySamples(1, 100);
+  diySensor.setBlockSensorName(1, "BLOCK-A");
+  diySensor.setDiyOccupancyThreshhold(1, 800);
+  diySensor.setDiyUnOccupancySamples(1, 20);
+
 
   diySensor.setBlockSensorPins(2, A1);
-  diySensor.setDiyOccupancyThreshhold(2, 600);
-  diySensor.setDiyOccupancySamples(2,100);
+  diySensor.setBlockSensorName(2, "BLOCK-B");
+  diySensor.setDiyOccupancyThreshhold(2, 800);
+  diySensor.setDiyUnOccupancySamples(2, 20);
+
+
   pinMode(X_BLOCK_LED, OUTPUT);
   pinMode(Y_BLOCK_LED, OUTPUT);
 }
@@ -172,8 +187,8 @@ void loop() {
   } else {
     digitalWrite(Y_BLOCK_LED, LOW);
   }
-}
 
+}
 
 ````
 
