@@ -21,8 +21,9 @@ class DiySensor {
 
     void initBlockSensors(int totalSensor);
     void setBlockSensorPins(int blockNo, uint8_t ctSensorPin);
+    void setBlockSensorName(int blockNo, String blockName);
     void setDiyOccupancyThreshhold(int blockNo, int occupancyThreshold);
-    void setDiyOccupancySamples(int blockNo, int unOccupancySamples);
+    void setDiyUnOccupancySamples(int blockNo, int unOccupancySamples);
     bool isSensorBlockOccupied(int blockNo);
 
     ~DiySensor() {

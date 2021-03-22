@@ -1,8 +1,9 @@
 
 #include "DiySensor.h"
 
-#define CT_SENSOR_COUNT 1
+#define CT_SENSOR_COUNT 2
 #define X_BLOCK_LED 13
+#define Y_BLOCK_LED 12
 
 DiySensor diySensor;
 void setup() {
@@ -12,7 +13,16 @@ void setup() {
   diySensor.setBlockSensorName(1, "BLOCK-A");
   diySensor.setDiyOccupancyThreshhold(1, 800);
   diySensor.setDiyUnOccupancySamples(1, 20);
+
+
+  diySensor.setBlockSensorPins(2, A1);
+  diySensor.setBlockSensorName(2, "BLOCK-B");
+  diySensor.setDiyOccupancyThreshhold(2, 800);
+  diySensor.setDiyUnOccupancySamples(2, 20);
+
+
   pinMode(X_BLOCK_LED, OUTPUT);
+  pinMode(Y_BLOCK_LED, OUTPUT);
 }
 
 void loop() {
@@ -22,4 +32,12 @@ void loop() {
   } else {
     digitalWrite(X_BLOCK_LED, LOW);
   }
+
+  bool yBlockState = diySensor.isSensorBlockOccupied(2);
+  if (yBlockState) {
+    digitalWrite(Y_BLOCK_LED, HIGH);
+  } else {
+    digitalWrite(Y_BLOCK_LED, LOW);
+  }
+
 }
