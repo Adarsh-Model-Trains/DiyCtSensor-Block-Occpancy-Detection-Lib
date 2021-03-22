@@ -21,10 +21,11 @@ class CtSensor {
     int _sensorSamplesCount; //numSamples
     int _occupancyThreshold;  //threshold
     int _unOccupancySamples; // clearsample
-    int _unOccupancyCount; // clearcount
-    int _sensorReadingTemp;
-    int _sensorTotalReadingTemp;
+    int _unOccupancyCount; // clearcount    
+    int _sensorReadingTempVal;
+    int _sensorTotalReading;
     int _index;
+    
     BLOCK_STATE _stateCurrent = UNOCCUPIED;
     void init();
 

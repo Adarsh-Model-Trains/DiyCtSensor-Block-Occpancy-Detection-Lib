@@ -12,12 +12,13 @@ void CtSensor::init() {
   _sensorAverageReading = 0;
   _sensorSamplesCount = 10;
   _occupancyThreshold = 600;
-  _unOccupancySamples = 20;
+  _unOccupancySamples = 100;
 }
 
 void CtSensor::setOccupancyThreshhold(int occupancyThreshold) {
   _occupancyThreshold = occupancyThreshold;
 }
+
 void CtSensor::setOccupancySamples(int unOccupancySamples) {
   _unOccupancySamples = unOccupancySamples;
 }
@@ -48,14 +49,19 @@ void CtSensor::occupiedBlock() {
 }
 
 void CtSensor::calculateBlockOccupancy() {
-  _sensorReadingTemp = 0;
-  _sensorTotalReadingTemp = 0;
+  _sensorReadingTempVal = 0;
+  _sensorTotalReading = 0;
   for (_index = 0; _index < _sensorSamplesCount; _index++ ) {
-    _sensorReadingTemp = analogRead(_blockSensorPin);
-    _sensorTotalReadingTemp += _sensorReadingTemp;
-    _sensorAverageReading = _sensorTotalReadingTemp / _index;
-    Serial.println(_sensorAverageReading);
+    _sensorReadingTempVal = analogRead(_blockSensorPin);
+    if (_sensorReadingTempVal > 0) {
+      _sensorTotalReading += _sensorReadingTempVal;
+    } else {
+      _index--;
+    }
   }
+  _sensorAverageReading = _sensorTotalReading / _sensorSamplesCount;
+  Serial.print("SENSOR AVERAGE READING ");
+  Serial.println(_sensorAverageReading);
   switch (_stateCurrent) {
     case OCCUPIED:
       occupiedBlock();
