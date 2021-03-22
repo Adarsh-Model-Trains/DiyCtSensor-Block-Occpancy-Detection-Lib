@@ -23,11 +23,15 @@ void DiySensor::initBlockSensors(int totalSensor) {
 }
 
 void DiySensor::setDiyOccupancyThreshhold(int blockNo, int occupancyThreshold) {
-  this->_ctSensorBlocks[blockNo].setOccupancyThreshhold(occupancyThreshold);
+  this->_ctSensorBlocks[blockNo - 1].setOccupancyThreshhold(occupancyThreshold);
 }
 
-void DiySensor::setDiyOccupancySamples(int blockNo, int unOccupancySamples) {
-  this->_ctSensorBlocks[blockNo].setOccupancySamples(unOccupancySamples);
+void DiySensor::setDiyUnOccupancySamples(int blockNo, int unOccupancySamples) {
+  this->_ctSensorBlocks[blockNo - 1].setUnOccupancySamples(unOccupancySamples);
+}
+
+void DiySensor::setBlockSensorName(int blockNo, String blockName) {
+  this->_ctSensorBlocks[blockNo - 1].setName(blockName);
 }
 
 void DiySensor::setBlockSensorPins(int blockNo, uint8_t ctSensorPin) {
