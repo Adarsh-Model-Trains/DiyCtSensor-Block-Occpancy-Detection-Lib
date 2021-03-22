@@ -1,23 +1,18 @@
 
 #include "DiySensor.h"
 
-#define CT_SENSOR_COUNT 2
+#define CT_SENSOR_COUNT 1
 #define X_BLOCK_LED 13
-#define Y_BLOCK_LED 12
 
 DiySensor diySensor;
 void setup() {
   Serial.begin(9600);
   diySensor.initBlockSensors(CT_SENSOR_COUNT);
   diySensor.setBlockSensorPins(1, A0);
-  diySensor.setDiyOccupancyThreshhold(1, 600);
-  diySensor.setDiyOccupancySamples(1, 100);
-
-  diySensor.setBlockSensorPins(2, A1);
-  diySensor.setDiyOccupancyThreshhold(2, 600);
-  diySensor.setDiyOccupancySamples(2,100);
+  diySensor.setBlockSensorName(1, "BLOCK-A");
+  diySensor.setDiyOccupancyThreshhold(1, 800);
+  diySensor.setDiyUnOccupancySamples(1, 20);
   pinMode(X_BLOCK_LED, OUTPUT);
-  pinMode(Y_BLOCK_LED, OUTPUT);
 }
 
 void loop() {
@@ -26,12 +21,5 @@ void loop() {
     digitalWrite(X_BLOCK_LED, HIGH);
   } else {
     digitalWrite(X_BLOCK_LED, LOW);
-  }
-
-  bool yBlockState = diySensor.isSensorBlockOccupied(2);
-  if (yBlockState) {
-    digitalWrite(Y_BLOCK_LED, HIGH);
-  } else {
-    digitalWrite(Y_BLOCK_LED, LOW);
   }
 }
