@@ -26,6 +26,9 @@ DiyCtSensor-Block-Detection-Lib is for supporing multiple Ct Sensor Based Block 
 
 ## Steps for using lib
 
+### YOUTUBE LINK LIBRARY DETAILS AND DEMO EXAMPLES
+[![DIY CT SENSOR FOR BLOCK DETECTION](http://img.youtube.com/vi/vTDKo_aSGnA/0.jpg)](https://www.youtube.com/watch?v=vTDKo_aSGnA "DIY CT SENSOR FOR BLOCK DETECTION")
+
 ### include the header file
 
 ```
