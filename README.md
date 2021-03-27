@@ -15,6 +15,13 @@ DiyCtSensor-Block-Detection-Lib is for supporing multiple Ct Sensor Based Block 
  and get the status of the sensors by calling methods for block occupancy decection 
 ```
 
+## item used for circuit 
+
+![img](image/current-transformer.png)
+
+![img](image/resistor.png)
+
+![img](image/diodes.png)
 
 
 ## Steps for using lib
