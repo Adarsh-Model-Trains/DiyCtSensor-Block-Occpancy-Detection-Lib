@@ -1,9 +1,9 @@
-# DiyCtSensor-Block-Detection-Lib
+# DiyCtSensor-Block-Occpancy-Detection-Lib
 
 ----
 
 
-# <a href="https://github.com/adarshkumarsingh83/DiyCtSensor-Block-Detection-Lib/archive/production.zip"> Library download link </a>
+# <a href="https://github.com/adarshkumarsingh83/DiyCtSensor-Block-Occpancy-Detection-Lib/archive/production.zip"> Library download link </a>
 
 ## About the lib 
 ```
