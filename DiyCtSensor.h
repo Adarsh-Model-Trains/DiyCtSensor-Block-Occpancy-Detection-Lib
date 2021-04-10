@@ -5,15 +5,15 @@
 */
 
 
-#ifndef CtSensor_h
-#define CtSensor_h
+#ifndef DiyCtSensor_h
+#define DiyCtSensor_h
 
 enum BLOCK_STATE {
   OCCUPIED,
   UNOCCUPIED,
 };
 
-class CtSensor {
+class DiyCtSensor {
 
   private:
     String _blockName;
@@ -35,7 +35,7 @@ class CtSensor {
     void unOccupiedBlock();
 
   public:
-    CtSensor() {
+    DiyCtSensor() {
       init();
     }
     void setName(String blockName);
@@ -44,7 +44,7 @@ class CtSensor {
     void setUnOccupancySamples(int unOccupancySamples);
     bool isBlockOccupied();
 
-    ~CtSensor() {
+    ~DiyCtSensor() {
 
     }
 };
