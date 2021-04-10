@@ -1,0 +1,25 @@
+#######################################
+# Syntax Coloring Map For Matrix
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DiySensor KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+initBlockSensors KEYWORD2
+setBlockSensorPins KEYWORD2
+setBlockSensorName KEYWORD2
+setDiyOccupancyThreshhold KEYWORD2
+setDiyUnOccupancySamples KEYWORD2
+isSensorBlockOccupied KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
