@@ -5,33 +5,33 @@
 */
 
 #include <Arduino.h>
-#include "DiyCtSensor.h"
+#include "CustomCtSensor.h"
 
 
-void DiyCtSensor::init() {
+void CustomCtSensor::init() {
   _sensorAverageReading = 0;
   _sensorSamplesCount = 10;
   _occupancyThreshold = 550;
   _unOccupancySamples = 50;
 }
 
-void DiyCtSensor::setName(String blockName) {
+void CustomCtSensor::setName(String blockName) {
   _blockName = blockName;
 }
 
-void DiyCtSensor::setOccupancyThreshhold(int occupancyThreshold) {
+void CustomCtSensor::setOccupancyThreshhold(int occupancyThreshold) {
   _occupancyThreshold = occupancyThreshold;
 }
 
-void DiyCtSensor::setUnOccupancySamples(int unOccupancySamples) {
+void CustomCtSensor::setUnOccupancySamples(int unOccupancySamples) {
   _unOccupancySamples = unOccupancySamples;
 }
 
-void DiyCtSensor::setBlockSensorPin(uint8_t blockSensorPin) {
+void CustomCtSensor::setBlockSensorPin(uint8_t blockSensorPin) {
   _blockSensorPin = blockSensorPin;
 }
 
-void DiyCtSensor::unOccupiedBlock() {
+void CustomCtSensor::unOccupiedBlock() {
   _unOccupancyCount = 0;
   if (_sensorAverageReading < _occupancyThreshold) {
     _stateCurrent = OCCUPIED;
@@ -39,7 +39,7 @@ void DiyCtSensor::unOccupiedBlock() {
   }
 }
 
-void DiyCtSensor::occupiedBlock() {
+void CustomCtSensor::occupiedBlock() {
   if (_sensorAverageReading > _unOccupancySamples && _unOccupancyCount < _unOccupancySamples) {
     _unOccupancyCount ++;
   }
@@ -52,7 +52,7 @@ void DiyCtSensor::occupiedBlock() {
   }
 }
 
-void DiyCtSensor::calculateBlockOccupancy() {
+void CustomCtSensor::calculateBlockOccupancy() {
   _sensorReadingTempVal = 0;
   _sensorTotalReading = 0;
 
@@ -77,7 +77,7 @@ void DiyCtSensor::calculateBlockOccupancy() {
   }
 }
 
-bool DiyCtSensor::isBlockOccupied() {
+bool CustomCtSensor::isBlockOccupied() {
   calculateBlockOccupancy();
   if (_stateCurrent == OCCUPIED) {
     return true;

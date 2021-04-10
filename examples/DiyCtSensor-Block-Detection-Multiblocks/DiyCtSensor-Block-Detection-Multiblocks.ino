@@ -1,11 +1,11 @@
 
-#include "DiySensor.h"
+#include "DiyCtSensor.h"
 
 #define CT_SENSOR_COUNT 2
 #define X_BLOCK_LED 13
 #define Y_BLOCK_LED 12
 
-DiySensor diySensor;
+DiyCtSensor diySensor;
 void setup() {
   Serial.begin(9600);
   diySensor.initBlockSensors(CT_SENSOR_COUNT);
