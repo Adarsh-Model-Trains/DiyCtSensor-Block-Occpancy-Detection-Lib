@@ -7,13 +7,13 @@
 #ifndef DiySensor_h
 #define DiySensor_h
 
-#include "CtSensor.h"
+#include "DiyCtSensor.h"
 
 class DiySensor {
 
   private:
     int _totalSensor;
-    CtSensor * _ctSensorBlocks;
+    DiyCtSensor * _ctSensorBlocks;
 
   public:
     DiySensor() {

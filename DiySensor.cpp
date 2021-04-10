@@ -13,7 +13,7 @@ void DiySensor::initBlockSensors(int totalSensor) {
   if (totalSensor > 0) {
     if (totalSensor > 0)
       _totalSensor = totalSensor;
-    this->_ctSensorBlocks = new CtSensor[_totalSensor];
+    this->_ctSensorBlocks = new DiyCtSensor[_totalSensor];
     for (int i = 0; i < _totalSensor; i++) {
       this->_ctSensorBlocks[i].setBlockSensorPin(0);
     }
